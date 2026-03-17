@@ -32,6 +32,10 @@
     "name": "Ally Summers",
     "email": "git@ay.ms"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allysummers/is-valid-tfn"
+  },
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "2.4.7",
