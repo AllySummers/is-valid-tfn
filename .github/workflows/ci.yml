@@ -2,102 +2,37 @@ name: CI
 
 on:
   push:
-    branches: ['*']
+    branches: ['**']
   pull_request:
     branches: [main]
-
-env:
-  HUSKY: 0
-
 jobs:
-  lint:
-    name: Static code analysis
+  checks:
+    name: ${{ matrix.name }}
     runs-on: ubuntu-24.04-arm
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Static code analysis
+            task: lint
+          - name: Type checking
+            task: typecheck
+          - name: Unit tests
+            task: unit
+          - name: Build
+            task: build
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-
-      - name: Run tests
-        run: biome lint
-
-  typescript:
-    name: Type checking
-    runs-on: ubuntu-24.04-arm
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Cache Yarn cache
-        uses: actions/cache@v5
-        env:
-          cache-name: yarn-cache
+      - name: Setup mise
+        uses: jdx/mise-action@v3
         with:
-          path: ~/.yarn/berry/cache
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}
+          github_token: ${{ github.token }}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
+      - name: Install project dependencies
+        run: mise run install
 
-      - name: Install Corepack
-        run: npm install -g corepack
-
-      - name: Install dependencies
-        run: yarn --immutable
-
-      - name: Run type checking
-        run: yarn tsc
-
-  format:
-    name: Formatting
-    runs-on: ubuntu-24.04-arm
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Biome
-        uses: biomejs/setup-biome@v2
-
-      - name: Run formatting
-        run: biome format
-
-  unit:
-    name: Unit tests
-    runs-on: ubuntu-24.04-arm
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Cache Yarn cache
-        uses: actions/cache@v5
-        env:
-          cache-name: yarn-cache
-        with:
-          path: ~/.yarn/berry/cache
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}
-
-      - name: Use Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-
-      - name: Install Corepack
-        run: npm install -g corepack
-
-      - name: Install dependencies
-        run: yarn --immutable
-
-      - name: Run tests
-        run: yarn unit
+      - name: Run ${{ matrix.task }}
+        run: mise run ${{ matrix.task }}

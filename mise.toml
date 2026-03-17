@@ -1,0 +1,30 @@
+[tools]
+node = '24.14.0'
+pnpm = '10.32.1'
+
+[env]
+_.path = ['{{config_root}}/node_modules/.bin']
+
+[tasks.install]
+description = 'Install project dependencies'
+run = 'pnpm install'
+
+[tasks.format]
+description = 'Format the repository with Biome'
+run = 'biome format --write .'
+
+[tasks.lint]
+description = 'Run formatting and lint checks with Biome'
+run = 'biome check .'
+
+[tasks.typecheck]
+description = 'Run the TypeScript compiler in noEmit mode'
+run = 'tsgo'
+
+[tasks.unit]
+description = 'Run the Vitest unit suite'
+run = 'vitest run'
+
+[tasks.build]
+description = 'Build the package into dist/'
+run = 'tsgo --project tsconfig.build.json'

@@ -4,9 +4,6 @@ on:
   release:
     types: [published]
 
-env:
-  HUSKY: 0
-
 permissions:
   id-token: write
 

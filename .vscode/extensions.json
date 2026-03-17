@@ -1,4 +1,4 @@
 {
-  "recommendations": ["biomejs.biome"],
+  "recommendations": ["biomejs.biome", "TypeScriptTeam.native-preview"],
   "unwantedRecommendations": ["dbaeumer.jshint", "dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
 }
