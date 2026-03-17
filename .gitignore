@@ -8,14 +8,8 @@
 *.tsbuildinfo
 .eslintcache
 
-# Yarn
-.pnp.*
-**/.yarn/*
-!**/.yarn/patches
-!**/.yarn/plugins
-!**/.yarn/releases
-!**/.yarn/sdks
-!**/.yarn/versions
+# pnpm
+.pnpm-store
 
 # Project-generated directories and files
 coverage
