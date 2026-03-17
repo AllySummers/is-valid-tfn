@@ -1,6 +1,6 @@
 {
   "name": "is-valid-tfn",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Check if a value is a valid Australian Tax File Number (TFN)",
   "type": "module",
   "sideEffects": false,
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/allysummers/is-valid-tfn"
+    "url": "https://github.com/AllySummers/is-valid-tfn"
   },
   "license": "MIT",
   "devDependencies": {
