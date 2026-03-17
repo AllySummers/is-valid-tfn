@@ -3,7 +3,6 @@
   "editor.formatOnSave": true,
   "js/ts.experimental.useTsgo": true,
   "search.exclude": {
-    "**/.yarn": true,
     "**/node_modules": true
   }
 }
