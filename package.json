@@ -1,6 +1,6 @@
 {
   "name": "is-valid-tfn",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Check if a value is a valid Australian Tax File Number (TFN)",
   "type": "module",
   "sideEffects": false,
