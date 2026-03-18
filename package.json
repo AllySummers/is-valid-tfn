@@ -1,16 +1,16 @@
 {
   "name": "is-valid-tfn",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Check if a value is a valid Australian Tax File Number (TFN)",
   "type": "module",
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "source": "./src/index.ts",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/is-valid-tfn.js",
+  "source": "./src/is-valid-tfn.ts",
+  "types": "./dist/is-valid-tfn.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/is-valid-tfn.d.ts",
+      "default": "./dist/is-valid-tfn.js"
     }
   },
   "scripts": {
